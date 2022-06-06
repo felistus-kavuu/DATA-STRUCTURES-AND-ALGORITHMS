@@ -1,0 +1,36 @@
+#Question:Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+#Approach 1:
+#sort the array first
+#Use a for loop to check whether adjacent elements are equal; return true if they are; Otherwise continue looping through the array and if conditions are met, return false
+#O(n) time complexity and O(1) space complexity
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size()-1;i++){
+            if (nums[i]==nums[i+1]){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+#Approach2
+#HASHMAP
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        map<int,int>duplicate;
+        for(int i=0;i<nums.size();i++){
+            duplicate[nums[i]]++;   //inserts the elements in the array into our map
+        }
+        for (auto x:duplicate){
+            if (x.second>1){
+                return true;
+            }
+            
+        }
+        return false;
+    }
+};
